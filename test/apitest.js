@@ -28,4 +28,4 @@ api
 
 fs.writeFile("./my.md",api.md,console.log);
 
-api.doExec({uid:"www",email:"adminaa.cc@email.cc.com"}, console.log)
+api.invoke({uid:"www",email:"adminaa.cc@email.cc.com"}, console.log)

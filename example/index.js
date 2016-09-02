@@ -10,9 +10,22 @@
 // set.add("params1")
 //
 // console.log(set)
+var path = require("path");
 
-var fn = function(){
-    console.log([].slice.apply(arguments))
-}
+var Rest = require("../");
 
-fn(1,2,3,4,5,6)
+var fs = require("fs");
+
+var rest = new Rest(path.join(__dirname, "apis"));
+
+rest.invoke("GET", "/real/szse/A_STOCK/000001", {name: "aaaa"}, function (err, result) {
+    if(err){
+        console.log(err.message);
+        console.log(err.stack);
+    }
+    console.log("===>",result)
+})
+
+fs.writeFile("index.md",rest.md,console.log);
+
+
