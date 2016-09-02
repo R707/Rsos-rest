@@ -2,20 +2,30 @@
  * Created by cavasblack on 16/9/1.
  */
 var Api = require("../lib/api");
-var MyString = require("../lib/types/String");
+var String = require("../lib/types").String;
+var Email = require("../lib/types").Email;
 var api = new Api("GET", "/user")
 var fs = require('fs');
 api
     .group("groupaaa")
     .param("uid", {
-        type: new MyString(),
+        type: String(),
         default: "10000",
         detail: "用户ID"
     })
-    .required("uid")
+    .param("email",{
+        type:Email()
+    })
+    .param("nickname", {
+        type: String(),
+        default: "测试昵称"
+    })
+    .required("uid","email")
     .example(JSON.stringify({uname: "cavacn"}))
     .exec(function (params, callback) {
         callback(null, params);
     })
 
-fs.writeFile("./my.md",api.toMD(),console.log);
+fs.writeFile("./my.md",api.md,console.log);
+
+api.doExec({uid:"www",email:"adminaa.cc@email.cc.com"}, console.log)
