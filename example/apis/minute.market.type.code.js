@@ -3,6 +3,7 @@
  */
 module.exports = function (api, types) {
     api.method("GET")
+        .detail("这是关于股票获取的接口")
         .path("/minute/:market/:type/:code")
         .param("market", {
             type: types.String(function (value) {
