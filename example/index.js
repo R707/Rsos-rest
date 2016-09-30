@@ -18,6 +18,8 @@ var fs = require("fs");
 
 var rest = new Rest(path.join(__dirname, "apis"));
 
+// console.log(rest.walkfile("./"))
+
 rest.invoke("GET", "/real/szse/A_STOCK/000001", {name: "aaaa"}, function (err, result) {
     if(err){
         console.log(err.message);
@@ -26,6 +28,6 @@ rest.invoke("GET", "/real/szse/A_STOCK/000001", {name: "aaaa"}, function (err, r
     console.log("===>",result)
 })
 
-fs.writeFile("index.md",rest.md,console.log);
+// fs.writeFile("index.md",rest.md,console.log);
 
 
