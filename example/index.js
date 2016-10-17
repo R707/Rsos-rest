@@ -20,7 +20,7 @@ var rest = new Rest(path.join(__dirname, "apis"));
 
 // console.log(rest.walkfile("./"))
 
-rest.invoke("GET", "/real/szse/A_STOCK/000001", {name: "aaaa"}, function (err, result) {
+rest.invoke("GET", "/demo3", {name: "aaaa",age : "123" }, function (err, result) {
     if(err){
         console.log(err.message);
         console.log(err.stack);

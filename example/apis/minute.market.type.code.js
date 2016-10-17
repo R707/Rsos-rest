@@ -1,35 +1,44 @@
 /**
  * Created by cavasblack on 16/9/2.
  */
-module.exports = function (api, types) {
-    api.method("GET")
-        .detail("这是关于股票获取的接口")
-        .path("/minute/:market/:type/:code")
-        .param("market", {
-            type: types.String(function (value) {
+"use strict"
+const Api = require("../../lib").Api
+const Types = require("../../lib").Types
+module.exports = function (app) {
+
+    let api1 = new Api().method("GET")
+        .detail("内容")
+        .path("/demo/:name")
+        .param("name", {
+            type: Types.String(function (value) {
                 return value.toUpperCase()
-            }),
-            detail: "市场"
+            })
         })
-        .param("type", {
-            type: types.String(function (value) {
-                return value.toUpperCase()
-            }),
-            detail: "类型"
+        .param("age", {
+            type: Types.Number()
         })
-        .param("code", {
-            type: types.String(function (value) {
-                return value.toUpperCase()
-            }),
-            detail: "代码"
-        })
-        .param("date", {
-            type: types.String(),
-            detail: "日期"
-        })
-        .required("market", "type", "code")
+        .required("name", "age")
         .exec(function (params, callback) {
-            callback(null, params);
-        });
-    return api;
+            callback(null, params)
+        })
+
+    let api2 = new Api().method("GET")
+        .detail("内容2")
+        .path("/demo2/:name")
+        .param("name", {
+            type: Types.String(function (value) {
+                return value.toUpperCase()
+            })
+        })
+        .param("age", {
+            type: Types.Number()
+        })
+        .required("name")
+        .exec(function (params, callback) {
+            callback(null, params)
+        })
+
+    app.use(api1)
+
+    app.use(api2)
 }
